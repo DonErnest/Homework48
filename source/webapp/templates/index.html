@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} Покупай-отдыхай! {% endblock %}
+{% block menu %}
+    <li class="nav-item">
+        <a class="nav-link" href="#">Продать</a>
+    </li>
+{% endblock %}
+{% block content %}
+    <h1 class="text-center">А вот извольте-ка посмотреть на остров, остров, где всё у нас есть! </h1>
+    <div class="row justify-content-center pb-2 pt-2">
+        {% for item in items %}
+            <div class="card ml-2 mr-2 mb-2 " style="width: 18rem;">
+                <div class="card-header">
+{#                    <div class="form-check d-inline">#}
+{#                        <input class="form-check-input position-relative"#}
+{#                               type="checkbox" name= "delete_check" value={{ item.pk }}>#}
+{#                    </div>#}
+                    <h5 class="card-title text-center d-inline">{{ item.name }}</h5>
+                </div>
+                <div class="card-body d-flex flex-column">
+
+                    <h6 class="card-subtitle mb-2 text-muted mt-auto">{{ item.get_category_display }}</h6>
+                    <div class = "btn-group btn-group-sm mt-auto">
+                        <a class = "btn" href="#">Посмотреть товар</a>
+{#                        <a class = "btn" href="{% url 'update_view' item.pk %}">Обновить задачу</a>#}
+{#                        <a class = "btn" href="{% url 'action_delete' item.pk %}">Удалить задачу</a>#}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
