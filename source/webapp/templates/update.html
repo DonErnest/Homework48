@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Обновить продажу{% endblock %}
+{% block content %}
+    <div class = "d-flex justify-content-center pt-5 pb-5">
+        <form action="{% url 'item_update' item.pk %}" method="POST" class = "w-50 pt-3 pb-3">
+            {% include 'partial/item_form.html' with button_text='Обновить' %}
+        </form>
+    </div>
+{% endblock %}

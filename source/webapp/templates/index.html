@@ -2,13 +2,13 @@
 {% block title %} Покупай-отдыхай! {% endblock %}
 {% block menu %}
     <li class="nav-item">
-        <a class="nav-link" href="#">Продать</a>
+        <a class="nav-link" href="{% url 'item_add' %}">Продать</a>
     </li>
      <form class="form-inline ml-auto" method="GET" action="{% url 'item_search' %}">
             {% load widget_tweaks %}
             {%  csrf_token %}
             {{ search.search_text|add_class:'form-control mr-sm-2'}}
-            <button class="btn btn-warning my-2 my-sm-0" type="submit">Найти</button>
+            <button class="btn btn-info my-2 my-sm-0" type="submit">Найти</button>
         </form>
 {% endblock %}
 {% block content %}
@@ -28,8 +28,8 @@
                     <h5 class="card-subtitle mb-2 text-muted mt-auto">{{ item.get_category_display }}</h5>
                     <h6>{{ item.price }}</h6>
                     <div class = "btn-group btn-group-sm mt-auto">
-                        <a class = "btn" href="{% url 'item_view' item.pk %}">Посмотреть товар</a>
-{#                        <a class = "btn" href="{% url 'update_view' item.pk %}">Обновить задачу</a>#}
+                        <a class = "btn btn-outline-info" href="{% url 'item_view' item.pk %}">Посмотреть товар</a>
+                        <a class = "btn btn-outline-info" href="{% url 'item_update' item.pk %}">Обновить продажу</a>
 {#                        <a class = "btn" href="{% url 'action_delete' item.pk %}">Удалить задачу</a>#}
                     </div>
                 </div>
