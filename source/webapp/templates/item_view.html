@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Посмотри и купи! {% endblock %}
+{% block menu %}
+    <li class="nav-item">
+        <a class="nav-link" href="#">Продать</a>
+    </li>
+{% endblock %}
+{% block content %}
+    <div class="row justify-content-center pt-5 pb-5">
+        <div class="item">
+            <h1>Товар</h1>
+            <h2><strong>Наименование:</strong> {{ item.name }}</h2>
+            <h3><strong>Категория:</strong> {{ item.get_category_display }}</h3>
+            <p><strong>Описание:</strong> {{ item.description|escape|linebreaks }}</p>
+            <p><strong>Цена:</strong> {{ item.price }}</p>
+            <p><strong>Остаток:</strong> {{ item.amount }}</p>
+            <div class = "btn-block">
+{#                <a class = "btn btn-warning" href="{% url 'update_view' task.pk %}">Обновить задачу</a>#}
+{#                <a class = "btn btn-warning" href="{% url 'action_delete' task.pk %}">Удалить задачу</a>#}
+                <a class = "btn" href="{% url 'main' %}">Вернуться на главную страницу</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
