@@ -4,6 +4,12 @@
     <li class="nav-item">
         <a class="nav-link" href="#">Продать</a>
     </li>
+     <form class="form-inline ml-auto" method="GET" action="{% url 'item_search' %}">
+            {% load widget_tweaks %}
+            {%  csrf_token %}
+            {{ search.search_text|add_class:'form-control mr-sm-2'}}
+            <button class="btn btn-warning my-2 my-sm-0" type="submit">Найти</button>
+        </form>
 {% endblock %}
 {% block content %}
     <h1 class="text-center">А вот извольте-ка посмотреть на остров, остров, где всё у нас есть! </h1>
