@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление товара{% endblock %}
+{% block content %}
+     <div class = "row justify-content-center pt-5 pb-5">
+        <div class = "item">
+            <h1>Удаление товара</h1>
+            <h2><strong>Наименование:</strong> {{ task.description }}</h2>
+            <h5>Вы уверены, что хотите удалить выбранный товар?</h5>
+            <form method="POST" action="{% url 'item_delete' item.pk %}">
+                {% csrf_token %}
+                <div class = "btn-group pl-5">
+                    <input type="submit" class  = 'btn btn-outline-info' value="Да">
+                    <a type="submit" class  = 'btn btn-outline-info' href="{% url 'item_view' item.pk %}">Отмена</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
