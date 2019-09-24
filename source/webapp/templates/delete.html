@@ -5,7 +5,7 @@
      <div class = "row justify-content-center pt-5 pb-5">
         <div class = "item">
             <h1>Удаление товара</h1>
-            <h2><strong>Наименование:</strong> {{ task.description }}</h2>
+            <h2><strong>Наименование:</strong> {{ item.name }}</h2>
             <h5>Вы уверены, что хотите удалить выбранный товар?</h5>
             <form method="POST" action="{% url 'item_delete' item.pk %}">
                 {% csrf_token %}

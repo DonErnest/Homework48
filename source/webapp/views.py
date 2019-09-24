@@ -2,18 +2,22 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseBadRequest
 
 from webapp.forms import SearchForm, ItemForm
-from webapp.models import Item
+from webapp.models import Item, category_choices
 import re
+
 
 def index_view(request, *args, **kwargs):
     items = Item.objects.filter(amount__gte=1).order_by('category', 'name')
     search = SearchForm()
-    return render(request, 'index.html',context={'items': items, 'search': search})
+    categories = category_choices
+    return render(request, 'index.html',context={'items': items, 'search': search, 'categories': categories})
 
 
 def item_view(request, pk):
     item = get_object_or_404(Item, pk=pk)
-    return render(request, 'item_view.html', context={'item': item})
+    search = SearchForm()
+    categories = category_choices
+    return render(request, 'item_view.html', context={'item': item, 'search': search, 'categories': categories})
 
 
 def search_view(request, *args, **kwargs):
@@ -80,3 +84,13 @@ def delete(request,pk):
         item.delete()
     return redirect('main')
 
+
+def category_view(request, category):
+    items = Item.objects.filter(category=category, amount__gte=1).order_by('name')
+    categories = category_choices
+    for option in categories:
+        if option[0] == category:
+            category_tuple = option
+            break
+    search = SearchForm()
+    return render(request, 'by_category.html', context={'items': items, 'search': search, 'categories': categories, 'category': category_tuple})
