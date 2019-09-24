@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseBadRequest
 
 from webapp.forms import SearchForm, ItemForm
 from webapp.models import Item, category_choices
-import re
+from re import search as re_search
 
 
 def index_view(request, *args, **kwargs):
@@ -24,7 +23,7 @@ def search_view(request, *args, **kwargs):
     search = SearchForm(data=request.GET)
     if search.is_valid():
         text=search.cleaned_data['search_text']
-        if bool(re.search('[\u0400-\u04FF]', text)):
+        if bool(re_search('[\u0400-\u04FF]', text)):
             items = Item.objects.all()
             rus_items=[]
             for item in items:
